@@ -3,7 +3,6 @@ NextJS application to implement better-auth for cross-site authentication.
 
 ## Project Structure
 ```
-/app-dashboard/
 ├── app-dashboard/       # Central identity provider (Better Auth + Dashboard)
 │   ├── app/
 │   │   ├── api/
