@@ -28,6 +28,7 @@ export default function DashboardPage() {
         setUser(data);
       } catch (err) {
         // Redirect to login if not authenticated
+        console.error(err);
         router.push("/login");
       } finally {
         setLoading(false);

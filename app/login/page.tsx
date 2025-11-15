@@ -2,16 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { BetterAuthError } from "better-auth";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +18,7 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const { data, error } = await authClient.signIn.email(
+      const { /*data, error*/ } = await authClient.signIn.email(
         {
           email,
           password,
@@ -33,8 +32,12 @@ export default function LoginPage() {
           //callbacks
         }
       );
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof BetterAuthError || err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError(String(err));
+      }
     } finally {
       setLoading(false);
     }
@@ -154,7 +157,7 @@ export default function LoginPage() {
         </form>
 
         <p className="text-center text-gray-500 mt-6 text-sm">
-          Don't have an account?{" "}
+          {`Don't have an account? `}
           <Link href="/signup" className="text-indigo-600 hover:underline">
             Sign Up
           </Link>

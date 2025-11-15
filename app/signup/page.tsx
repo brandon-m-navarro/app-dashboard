@@ -3,9 +3,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { BetterAuthError } from "better-auth";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
@@ -13,7 +13,6 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +22,7 @@ export default function SignupPage() {
     try {
 
       // const session = await res.json();
-      const { data, error } = await authClient.signUp.email(
+      const { /*data, error*/ } = await authClient.signUp.email(
         {
           email, // user email address
           password, // user password -> min 8 characters by default
@@ -33,9 +32,11 @@ export default function SignupPage() {
         {
           onRequest: (ctx) => {
             //show loading
+            console.log(ctx)
           },
           onSuccess: (ctx) => {
             //redirect to the dashboard or sign in page
+              console.log(ctx)
           },
           onError: (ctx) => {
             // display the error message
@@ -43,8 +44,12 @@ export default function SignupPage() {
           },
         }
       );
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof BetterAuthError || err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError(String(err));
+      }
     } finally {
       setLoading(false);
     }

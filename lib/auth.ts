@@ -1,7 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { PrismaClient } from "@prisma/client";
-import { sendEmail } from "./email";
 
 const prisma = new PrismaClient();
 export const auth = betterAuth({
@@ -10,6 +9,7 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: true,
   },
   socialProviders: {
     github: {
@@ -18,11 +18,15 @@ export const auth = betterAuth({
     },
   },
   emailVerification: {
-    sendVerificationEmail: async ( { user, url, token }, request) => {
-      await sendEmail({
-        to: user.email,
-        subject: "Verify your email address",
-        text: `Click the link to verify your email: ${url}`,
+    sendVerificationEmail: async ({ user, url, /*token*/ }/*, request*/) => {
+      await fetch("http://localhost:3000/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: user.email,
+          subject: user.name + ', time to verifiy your email!',
+          url: url
+        }),
       });
     },
   },
