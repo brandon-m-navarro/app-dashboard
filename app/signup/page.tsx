@@ -37,6 +37,7 @@ export default function SignupPage() {
             console.log(ctx);
           },
           onSuccess: (ctx) => {
+            console.log(ctx);
             //redirect to the verify email page
             router.push(`/signup/verify?email=${encodeURIComponent(email)}`);
           },
