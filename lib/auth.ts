@@ -29,5 +29,6 @@ export const auth = betterAuth({
         }),
       });
     },
+    autoSignInAfterVerification: true
   },
 });

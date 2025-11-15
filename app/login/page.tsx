@@ -28,7 +28,14 @@ export default function LoginPage() {
           rememberMe: false,
         },
         {
-          //callbacks
+          onError: (ctx) => {
+            // Handle errors
+            if (ctx.error.status === 403) {
+              alert("Please verify your email address");
+            } else {
+              alert(ctx.error.message);
+            }
+          },
         }
       );
     } catch (err: unknown) {
