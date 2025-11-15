@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/prisma/generated/prisma-client";
 
 // Prevent multiple instances of Prisma Client in development
 // Next.js hot reload can create multiple instances otherwise

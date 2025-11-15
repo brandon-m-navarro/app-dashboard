@@ -5,7 +5,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { BetterAuthError } from "better-auth";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
@@ -45,7 +44,7 @@ export default function SignupPage() {
         }
       );
     } catch (err: unknown) {
-      if (err instanceof BetterAuthError || err instanceof Error) {
+      if (err instanceof Error) {
         setError(err.message);
       } else {
         setError(String(err));
