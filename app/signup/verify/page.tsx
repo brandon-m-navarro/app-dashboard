@@ -15,7 +15,6 @@ export default function VerifyEmailPage() {
     setIsSending(true);
     setStatus("idle");
 
-    // Check email was provided
     if (!email) {
       setStatus("error");
       setIsSending(false);
@@ -28,11 +27,8 @@ export default function VerifyEmailPage() {
         callbackURL: "/dashboard",
       });
 
-      if (error) {
-        setStatus("error");
-      } else {
-        setStatus("sent");
-      }
+      if (error) setStatus("error");
+      else setStatus("sent");
     } catch {
       setStatus("error");
     } finally {
@@ -41,43 +37,46 @@ export default function VerifyEmailPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-4">
-      <div className="max-w-md w-full text-center">
-        <h1 className="text-2xl font-semibold">Verify Your Email</h1>
-        <p className="text-muted-foreground mt-2">
+    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-700 p-6">
+      <div className="w-full max-w-md rounded-2xl bg-gray-50 shadow-xl p-10 text-center">
+
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          Verify Your Email
+        </h1>
+
+        <p className="text-gray-600 mb-2">
           We’ve sent a verification link to:
         </p>
 
-        {email ? (
-          <p className="font-medium mt-1">{email}</p>
-        ) : (
-          <p className="font-medium mt-1">(Check your inbox)</p>
-        )}
+        <p className="font-semibold text-gray-900 mb-4">
+          {email ? email : "(Check your inbox)"}
+        </p>
 
-        <p className="mt-4 text-sm text-muted-foreground">
-          Please click the link in the message to finish creating your account.
+        <p className="text-gray-600 text-sm mb-8">
+          Open the email and tap the verification link to finish creating your
+          account.
         </p>
 
         <button
           onClick={handleResend}
           disabled={isSending}
-          className="mt-6 w-full py-2 rounded-md bg-black text-white disabled:bg-neutral-400"
+          className="w-full rounded-lg bg-indigo-600 px-4 py-2 font-semibold text-white hover:bg-indigo-700 transition disabled:bg-indigo-300"
         >
           {isSending ? "Resending..." : "Resend Email"}
         </button>
 
         {status === "sent" && (
-          <p className="mt-3 text-green-600 text-sm">
+          <p className="mt-4 text-green-600 font-medium text-sm">
             Verification email sent again!
           </p>
         )}
 
         {status === "error" && (
-          <p className="mt-3 text-red-600 text-sm">
+          <p className="mt-4 text-red-600 font-medium text-sm">
             Could not resend verification email.
           </p>
         )}
       </div>
-    </div>
+    </main>
   );
 }

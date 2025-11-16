@@ -36,6 +36,9 @@ export default function LoginPage() {
               alert(ctx.error.message);
             }
           },
+          onSuccess: (ctx) => {
+            console.log(ctx);
+          },
         }
       );
     } catch (err: unknown) {
