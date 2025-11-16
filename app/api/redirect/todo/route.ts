@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
     const jwtToken = data.token;
 
     // Redirect to App B and set the JWT in a cookie
-    const response = NextResponse.redirect("https://localhost:3000"); // App B URL
+    const response = NextResponse.redirect("http://localhost:3000"); // App B URL
 
     response.cookies.set("auth_token", jwtToken, {
       httpOnly: true,      // prevents JS access
