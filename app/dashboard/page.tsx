@@ -96,7 +96,9 @@ export default function DashboardPage() {
 
             <button
               className="w-full rounded-lg bg-indigo-600 py-2 text-white font-semibold hover:bg-indigo-700 transition"
-              onClick={() => router.push("/apps/next-dashboard")}
+              onClick={() => {
+                window.location.href = "/api/redirect/todo";
+              }}
             >
               Open App
             </button>
