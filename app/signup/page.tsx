@@ -75,14 +75,34 @@ export default function SignupPage() {
         <div className="flex flex-col gap-3 mb-6">
           <button
             className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium text-gray-800 hover:bg-gray-100 transition"
-            onClick={() => (window.location.href = "/api/auth/google")}
+            onClick={async () => {
+              try {
+                await authClient.signIn.social({
+                  provider: "google",
+                  callbackURL: "/dashboard",
+                  disableRedirect: false,
+                });
+              } catch (err) {
+                console.error(err);
+              }
+            }}
           >
             <FaGoogle className="h-5 w-5" />
             Continue with Google
           </button>
           <button
             className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-gray-800 px-4 py-2 font-medium text-white hover:bg-gray-900 transition"
-            onClick={() => (window.location.href = "/api/auth/github")}
+            onClick={async () => {
+              try {
+                await authClient.signIn.social({
+                  provider: "github",
+                  callbackURL: "/dashboard",
+                  disableRedirect: false,
+                });
+              } catch (err) {
+                console.error(err);
+              }
+            }}
           >
             <FaGithub className="h-5 w-5" />
             Continue with GitHub

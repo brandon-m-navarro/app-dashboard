@@ -17,7 +17,9 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const { /*data, error*/ } = await authClient.signIn.email(
+      const {
+        /*data, error*/
+      } = await authClient.signIn.email(
         {
           email,
           password,
@@ -72,27 +74,9 @@ export default function LoginPage() {
             className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium text-gray-800 hover:bg-gray-100 transition"
             onClick={async () => {
               await authClient.signIn.social({
-                /**
-                 * The social provider ID
-                 */
                 provider: "google",
-                /**
-                 * A URL to redirect after the user authenticates with the provider
-                 */
                 callbackURL: "/dashboard",
-                /**
-                 * A URL to redirect if an error occurs during the sign in process
-                 */
-                errorCallbackURL: "/error",
-                /**
-                 * A URL to redirect if the user is newly registered
-                 */
-                newUserCallbackURL: "/welcome",
-                /**
-                 * disable the automatic redirect to the provider.
-                 * @default false
-                 */
-                disableRedirect: true,
+                disableRedirect: false,
               });
             }}
           >
@@ -102,29 +86,15 @@ export default function LoginPage() {
           <button
             className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-gray-800 px-4 py-2 font-medium text-white hover:bg-gray-900 transition"
             onClick={async () => {
-              await authClient.signIn.social({
-                /**
-                 * The social provider ID
-                 */
-                provider: "github",
-                /**
-                 * A URL to redirect after the user authenticates with the provider
-                 */
-                callbackURL: "/dashboard",
-                /**
-                 * A URL to redirect if an error occurs during the sign in process
-                 */
-                errorCallbackURL: "/error",
-                /**
-                 * A URL to redirect if the user is newly registered
-                 */
-                newUserCallbackURL: "/welcome",
-                /**
-                 * disable the automatic redirect to the provider.
-                 * @default false
-                 */
-                disableRedirect: true,
-              });
+              try {
+                await authClient.signIn.social({
+                  provider: "github",
+                  callbackURL: "/dashboard",
+                  disableRedirect: false,
+                });
+              } catch (err) {
+                console.error(err);
+              }
             }}
           >
             <FaGithub className="h-5 w-5" />
