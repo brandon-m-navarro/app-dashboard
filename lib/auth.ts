@@ -8,12 +8,12 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql", // or "mysql", "sqlite", ...etc
   }),
-  disabledPaths: [
-    "/token",
-  ],
-  plugins: [jwt({
-    disableSettingJwtHeader: true,
-  })],
+  // disabledPaths: [
+  //   "/token",
+  // ],
+  plugins: [jwt(
+    // { disableSettingJwtHeader: true, }
+  )],
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
