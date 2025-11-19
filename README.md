@@ -58,3 +58,8 @@ app-dashboard/       # Central identity provider (Better Auth + Dashboard)
 Configured bnav.dev to host a developer portfolio and send transactional emails using Resend. Managed DNS records, including SPF, DKIM, and optional DMARC, using AWS Route 53 to ensure secure email delivery and domain verification.
 
 Added CNAME to have bnav.dev route to vercel portfolio.
+
+Read through a bit of RFC 6749 (https://datatracker.ietf.org/doc/html/rfc6749#section-4.1) which outlines
+stanards for OAuth 2.0 flow from 2012.
+
+Then read a bit of RFC 9700 (https://datatracker.ietf.org/doc/html/rfc9700#name-best-practices) [Section 2: Best Practices] which outlines the core set of security mechanisms and measures that are considered to be best practices as of January 2025. This is the most recent RFC detailing OAuth 2.0.

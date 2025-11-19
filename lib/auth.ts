@@ -8,6 +8,10 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql", // or "mysql", "sqlite", ...etc
   }),
+  trustedOrigins: [
+    "http://localhost:3000", // Dev App URL
+    "https://nextjs-todo-lake.vercel.app" // Todo App URL
+  ],
   disabledPaths: [
     "/token",
   ],
