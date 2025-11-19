@@ -1,35 +1,35 @@
-import { NextRequest,NextResponse } from "next/server";
-import { authClient } from "@/lib/auth-client";
+import {/* NextRequest,*/NextResponse } from "next/server";
+// import { authClient } from "@/lib/auth-client";
 
-export async function GET(req: NextRequest) {
+export async function GET(/*req: NextRequest*/) {
   try {
+    return NextResponse.redirect("https://todo.bnav.dev"); // App B URL
+    // // Pass incoming request headers so authClient sees the session cookie
+    // const { data, error } = await authClient.token({
+    //   fetchOptions: {
+    //     headers: req.headers,
+    //   },
+    // });
 
-    // Pass incoming request headers so authClient sees the session cookie
-    const { data, error } = await authClient.token({
-      fetchOptions: {
-        headers: req.headers,
-      },
-    });
+    // if (error || !data?.token) {
+    //   console.error("JWT generation failed:", error);
+    //   return NextResponse.json({ error: "Cannot generate JWT" }, { status: 401 });
+    // }
 
-    if (error || !data?.token) {
-      console.error("JWT generation failed:", error);
-      return NextResponse.json({ error: "Cannot generate JWT" }, { status: 401 });
-    }
+    // const jwtToken = data.token;
 
-    const jwtToken = data.token;
+    // // Redirect to App B and set the JWT in a cookie
+    // const response = NextResponse.redirect("https:todo.bnav.dev"); // App B URL
 
-    // Redirect to App B and set the JWT in a cookie
-    const response = NextResponse.redirect("https:todo.bnav.dev"); // App B URL
+    // response.cookies.set("auth_token", jwtToken, {
+    //   httpOnly: true,      // prevents JS access
+    //   secure: process.env.NODE_ENV === "production",
+    //   sameSite: "lax",
+    //   path: "/",           // cookie available on all App B routes
+    //   maxAge: 60 * 60,     // 1 hour
+    // });
 
-    response.cookies.set("auth_token", jwtToken, {
-      httpOnly: true,      // prevents JS access
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/",           // cookie available on all App B routes
-      maxAge: 60 * 60,     // 1 hour
-    });
-
-    return response;
+    // return response;
 
   } catch (err) {
     console.error("Redirect error:", err);
