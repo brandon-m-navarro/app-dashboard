@@ -1,19 +1,26 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { PrismaClient } from "@/prisma/generated/prisma-client";
-import { jwt } from "better-auth/plugins"
+import { jwt } from "better-auth/plugins";
 
 const prisma = new PrismaClient();
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql", // or "mysql", "sqlite", ...etc
   }),
-  disabledPaths: [
-    "/token",
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: true,
+      domain: "login.bnav.dev", // Main domain for subdomain cookies
+    },
+    // useSecureCookies: true
+  },
+  trustedOrigins: [
+    "https://dash.bnav.dev",
+    "https://todo.bnav.dev"
   ],
-  plugins: [jwt(
-    { disableSettingJwtHeader: true, }
-  )],
+  disabledPaths: ["/token"],
+  plugins: [jwt({ disableSettingJwtHeader: true })],
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
@@ -29,17 +36,17 @@ export const auth = betterAuth({
     },
   },
   emailVerification: {
-    sendVerificationEmail: async ({ user, url, /*token*/ }/*, request*/) => {
+    sendVerificationEmail: async ({ user, url /*token*/ } /*, request*/) => {
       await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/send`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           to: user.email,
-          subject: user.name + ', time to verifiy your email!',
-          url: url
+          subject: user.name + ", time to verifiy your email!",
+          url: url,
         }),
       });
     },
-    autoSignInAfterVerification: true
+    autoSignInAfterVerification: true,
   },
 });
