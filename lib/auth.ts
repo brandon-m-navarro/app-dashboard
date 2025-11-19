@@ -11,7 +11,7 @@ export const auth = betterAuth({
   advanced: {
     crossSubDomainCookies: {
       enabled: true,
-      domain: "login.bnav.dev", // Main domain for subdomain cookies
+      domain: "bnav.dev", // Main domain for subdomain cookies
     },
     // useSecureCookies: true
   },
