@@ -1,8 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
-import { authClient } from "@/lib/auth-client";
+import {/*NextRequest,*/NextResponse } from "next/server";
+// import { authClient } from "@/lib/auth-client";
 
-export async function GET(req: NextRequest) {
+export async function GET(/*req: NextRequest*/) {
   try {
+    return NextResponse.redirect("http://localhost:3000"); // App B URL (currently dev)
+
+    /* Commenting out JWT generation as CORS issues arise in this flow
     // Pass incoming request headers so authClient sees the session cookie
     const { data, error } = await authClient.token({
       fetchOptions: {
@@ -29,6 +32,7 @@ export async function GET(req: NextRequest) {
     });
 
     return response;
+    */
   } catch (err) {
     console.error("Redirect error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

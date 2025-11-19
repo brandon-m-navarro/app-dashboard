@@ -1,25 +1,19 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { PrismaClient } from "@/prisma/generated/prisma-client";
-import { jwt } from "better-auth/plugins";
+import { jwt } from "better-auth/plugins"
 
 const prisma = new PrismaClient();
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql", // or "mysql", "sqlite", ...etc
   }),
-  trustedOrigins: [
-    "http://localhost:3000", // Dev App URL
-    "https://nextjs-todo-lake.vercel.app", // Todo App URL
+  disabledPaths: [
+    "/token",
   ],
-  cors: {
-    origin: ["http://localhost:3000", "https://nextjs-todo-lake.vercel.app"],
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  },
-  disabledPaths: ["/token"],
-  plugins: [jwt({ disableSettingJwtHeader: true })],
+  plugins: [jwt(
+    { disableSettingJwtHeader: true, }
+  )],
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
@@ -35,17 +29,17 @@ export const auth = betterAuth({
     },
   },
   emailVerification: {
-    sendVerificationEmail: async ({ user, url /*token*/ } /*, request*/) => {
+    sendVerificationEmail: async ({ user, url, /*token*/ }/*, request*/) => {
       await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/send`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           to: user.email,
-          subject: user.name + ", time to verifiy your email!",
-          url: url,
+          subject: user.name + ', time to verifiy your email!',
+          url: url
         }),
       });
     },
-    autoSignInAfterVerification: true,
+    autoSignInAfterVerification: true
   },
 });
