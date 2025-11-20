@@ -6,6 +6,7 @@ import { oidcProvider } from "better-auth/plugins/oidc-provider";
 
 const prisma = new PrismaClient();
 export const auth = betterAuth({
+  baseURL: "https://login.bnav.dev",
   database: prismaAdapter(prisma, {
     provider: "postgresql", // or "mysql", "sqlite", ...etc
   }),
@@ -33,15 +34,28 @@ export const auth = betterAuth({
     jwt({ disableSettingJwtHeader: true }),
     oidcProvider({
       loginPage: "https://login.bnav.dev/login",
-      // name: "login.bnav.dev",
-      // issuer: "https://login.bnav.dev",
-      // clientId: process.env.OIDC_CLIENT_ID as string,
-      // clientSecret: process.env.OIDC_CLIENT_SECRET as string,
-      // authorizationEndpoint: "https://login.bnav.dev/oauth/authorize",
-      // tokenEndpoint: "https://login.bnav.dev/oauth/token",
-      // userInfoEndpoint: "https://login.bnav.dev/oauth/userinfo",
-      // jwksEndpoint: "https://login.bnav.dev/api/auth/jwks",
-      // scopes: ["openid", "profile", "email"],
+      trustedClients: [
+        {
+          clientId: process.env.TODO_CLIENT_ID as string,
+          clientSecret: process.env.TODO_CLIENT_SECRET as string,
+          name: "Todo App",
+          type: "web",
+          redirectURLs: ["https://todo.bnav.dev/auth/callback"],
+          disabled: false,
+          skipConsent: true, // Skip consent for this trusted client
+          metadata: { internal: true },
+        },
+        {
+          clientId: "mobile-app",
+          clientSecret: "mobile-secret",
+          name: "Company Mobile App",
+          type: "native",
+          redirectURLs: ["com.company.app://auth"],
+          disabled: false,
+          skipConsent: false, // Still require consent if needed
+          metadata: {},
+        },
+      ],
     }),
   ],
   emailAndPassword: {
