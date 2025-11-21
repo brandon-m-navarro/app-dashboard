@@ -49,7 +49,7 @@ export const auth = betterAuth({
           type: "web",
           redirectURLs: ["https://todo.bnav.dev/auth/callback"],
           disabled: false,
-          skipConsent: true,
+          skipConsent: false,
           metadata: { internal: true },
         },
         {
