@@ -12,26 +12,26 @@ export const auth = betterAuth({
     provider: "postgresql",
   }),
 
-  advanced: {
-    // ✅ Cookie sharing across subdomains
-    crossSubDomainCookies: {
-      enabled: true,
-      domain: "bnav.dev",
-    },
+  // advanced: {
+  //   // Cookie sharing across subdomains
+  //   crossSubDomainCookies: {
+  //     enabled: true,
+  //     domain: "bnav.dev",
+  //   },
 
-    // ✅ CORS for browser fetch requests
-    cors: {
-      allowedOrigins: [
-        "https://todo.bnav.dev",
-        "https://dash.bnav.dev",
-        "https://admin.bnav.dev",
-      ],
-      allowedMethods: ["GET", "POST", "OPTIONS"],
-      allowedHeaders: ["Content-Type", "Authorization"],
-      allowCredentials: true,
-    },
-    // useSecureCookies: true, // enable in production
-  },
+  //   // CORS for browser fetch requests
+  //   cors: {
+  //     allowedOrigins: [
+  //       "https://todo.bnav.dev",
+  //       "https://dash.bnav.dev",
+  //       "https://admin.bnav.dev",
+  //     ],
+  //     allowedMethods: ["GET", "POST", "OPTIONS"],
+  //     allowedHeaders: ["Content-Type", "Authorization"],
+  //     allowCredentials: true,
+  //   },
+  //   // useSecureCookies: true, // enable in production
+  // },
 
   // OAuth / JWT Provider Mode
   disabledPaths: ["/token"],
@@ -49,7 +49,7 @@ export const auth = betterAuth({
           type: "web",
           redirectURLs: ["https://todo.bnav.dev/auth/callback"],
           disabled: false,
-          skipConsent: false,
+          skipConsent: true,
           metadata: { internal: true },
         },
         {
