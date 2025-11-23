@@ -8,7 +8,7 @@ export async function proxy(request: NextRequest) {
 
   // Example: If user is NOT logged in and trying to access /dashboard → redirect
   const { pathname } = new URL(request.url);
-  if (!isLoggedIn && pathname.startsWith("/dashboard")) {
+  if (!isLoggedIn && pathname.startsWith("/dashboard") || pathname === "/") {
     // Redirect to login page
     return NextResponse.redirect(new URL("/login", request.url));
   }
