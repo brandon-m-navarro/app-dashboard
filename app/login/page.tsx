@@ -55,12 +55,12 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-700 p-6">
-      <div className="w-full max-w-md rounded-2xl bg-gray-50 shadow-xl p-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-6 text-center">
+    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[#091a23] to-[purple-700] p-6">
+      <div className="w-full max-w-md rounded-2xl bg-[#0d212c] border-[#163341] border-[1px] shadow-xl p-8">
+        <h1 className="text-4xl font-bold text-white-900 mb-6 text-center">
           App Dashboard
         </h1>
-        <p className="text-center text-gray-600 mb-8">
+        <p className="text-center text-white-600 mb-8">
           Sign in to access all your apps securely.
         </p>
 
@@ -71,7 +71,7 @@ export default function LoginPage() {
         {/* OAuth Buttons */}
         <div className="flex flex-col gap-3 mb-6">
           <button
-            className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium text-gray-800 hover:bg-gray-100 transition"
+            className="flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-2 font-medium text-gray-800 hover:bg-gray-100 transition"
             onClick={async () => {
               await authClient.signIn.social({
                 provider: "google",
@@ -84,7 +84,7 @@ export default function LoginPage() {
             Continue with Google
           </button>
           <button
-            className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-gray-800 px-4 py-2 font-medium text-white hover:bg-gray-900 transition"
+            className="flex items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2 font-medium text-white hover:bg-gray-900 transition"
             onClick={async () => {
               try {
                 await authClient.signIn.social({
@@ -103,9 +103,9 @@ export default function LoginPage() {
         </div>
 
         <div className="flex items-center my-4">
-          <hr className="flex-1 border-gray-300" />
+          <hr className="flex-1 border-gray-500" />
           <span className="mx-2 text-gray-400">or</span>
-          <hr className="flex-1 border-gray-300" />
+          <hr className="flex-1 border-gray-500" />
         </div>
 
         {/* Email/password form */}
@@ -115,7 +115,7 @@ export default function LoginPage() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="rounded-lg text-black border border-gray-300 px-4 py-2 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none transition"
+            className="rounded-lg text-white border border-gray-500 px-4 py-2 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none transition"
             required
           />
           <input
@@ -123,7 +123,7 @@ export default function LoginPage() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="rounded-lg text-black border border-gray-300 px-4 py-2 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none transition"
+            className="rounded-lg text-white border border-gray-500 px-4 py-2 focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none transition"
             required
           />
           <button

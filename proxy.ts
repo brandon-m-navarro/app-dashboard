@@ -9,19 +9,20 @@ export async function proxy(request: NextRequest) {
   // Example: If user is NOT logged in and trying to access /dashboard → redirect
   const { pathname } = new URL(request.url);
   console.log(`Proxying request for: ${pathname}, logged in: ${isLoggedIn}`);
-  if (!isLoggedIn && pathname.startsWith("/dashboard")) {
-    // Redirect to login page
-    return NextResponse.redirect(new URL("/login", request.url));
-  } else if (isLoggedIn && pathname === "/login") {
-    // If logged in user tries to access login page, redirect to dashboard
-    return NextResponse.redirect(new URL("/dashboard", request.url));
-  } else if (isLoggedIn && pathname === "/") {
-    // If logged in user tries to access login page, redirect to dashboard
-    return NextResponse.redirect(new URL("/dashboard", request.url));
-  } else if (!isLoggedIn && pathname === "/") {
-    // If logged out user tries to access home page, redirect to login
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  
+  // if (!isLoggedIn && pathname.startsWith("/dashboard")) {
+  //   // Redirect to login page
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // } else if (isLoggedIn && pathname === "/login") {
+  //   // If logged in user tries to access login page, redirect to dashboard
+  //   return NextResponse.redirect(new URL("/dashboard", request.url));
+  // } else if (isLoggedIn && pathname === "/") {
+  //   // If logged in user tries to access login page, redirect to dashboard
+  //   return NextResponse.redirect(new URL("/dashboard", request.url));
+  // } else if (!isLoggedIn && pathname === "/") {
+  //   // If logged out user tries to access home page, redirect to login
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
 
   // Otherwise let the request through
   return NextResponse.next();

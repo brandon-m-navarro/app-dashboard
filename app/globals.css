@@ -24,3 +24,75 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.skewed-45 {
+  transform: skew(45deg, 0deg);
+}
+.skewed-45-reverse {
+  transform: skew(0deg, 45deg);
+}
+
+.face {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  opacity: 0.95;
+  border: 2px solid #222;
+}
+
+.front  { transform: rotateY(0deg) translateZ(50px); }
+.back   { transform: rotateY(180deg) translateZ(50px); }
+.right  { transform: rotateY(90deg) translateZ(50px); }
+.left   { transform: rotateY(-90deg) translateZ(50px); }
+.top    { transform: rotateX(90deg) translateZ(50px); }
+.bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+.preserve-3d { transform-style: preserve-3d; }
+.r-rect-front  { transform: rotateY(0deg) translateZ(8px); }
+.r-rect-back   { transform: rotateY(180deg) translateZ(8px); }
+.r-rect-left   { transform: rotateY(-90deg) translateZ(8px); }
+.r-rect-right  { transform: rotateY(90deg) translateZ(42px); }
+.r-rect-top    { transform: rotateX(90deg) translateZ(8px); }
+.r-rect-bottom { transform: rotateX(-90deg) translateZ(8px); }
+.r-rect { transform: rotate(135deg) translate3d(-6px, -10px, 0px); }
+
+.l-rect-front  { transform: rotateY(0deg) translateZ(8px); }
+.l-rect-back   { transform: rotateY(180deg) translateZ(8px); }
+.l-rect-left   { transform: rotateY(-90deg) translateZ(8px); }
+.l-rect-right  { transform: rotateY(90deg) translateZ(27px); }
+.l-rect-top    { transform: rotateX(90deg) translateZ(8px); }
+.l-rect-bottom { transform: rotateX(-90deg) translateZ(8px); }
+.l-rect { transform: rotate(45deg) translate3d(-3px, 0px, 0px); }
+ 
+/* These exist to hide the borders of the prisms */
+.check-front {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  transform: translate3d(29px, 1px, 8.05px);
+}
+.check-back {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  transform: translate3d(20px, -7px, -8.05px);
+}
+.check-side {
+  transform: rotateY(90deg) translate3d(0, -8px, 28.05px);
+  width: 14px;
+  height: 14px;
+}
+
+/* Animations */
+@theme {
+
+  --animate-rotate: rotate 15s linear infinite;
+  @keyframes rotate {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+}
