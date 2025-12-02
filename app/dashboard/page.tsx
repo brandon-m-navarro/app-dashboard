@@ -20,24 +20,24 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     try {
-  //       const res = await fetch("/api/user");
-  //       if (!res.ok) throw new Error("Not authorized");
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("/api/user");
+        if (!res.ok) throw new Error("Not authorized");
 
-  //       const data = await res.json();
-  //       setUser(data);
-  //     } catch (err) {
-  //       console.error(err);
-  //       router.push("/login");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+        const data = await res.json();
+        setUser(data);
+      } catch (err) {
+        console.error(err);
+        router.push("/login");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //   fetchUser();
-  // }, [router]);
+    fetchUser();
+  }, [router]);
 
   const handleLogout = async () => {
     await authClient.signOut({
@@ -47,13 +47,13 @@ export default function DashboardPage() {
     });
   };
 
-  // if (loading) {
-  //   return (
-  //     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-700">
-  //       <p className="text-white text-lg animate-pulse">Loading dashboard...</p>
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-700">
+        <p className="text-white text-lg animate-pulse">Loading dashboard...</p>
+      </div>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#091a23] to-[purple-700] flex items-center justify-center p-6">
