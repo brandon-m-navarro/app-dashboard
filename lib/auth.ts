@@ -26,7 +26,7 @@ export const auth = betterAuth({
           clientSecret: process.env.TODO_CLIENT_SECRET as string,
           name: "Todo App",
           type: "web",
-          redirectURLs: ["https://todo.bnav.dev/api/auth/callback"],
+          redirectUrls: ["https://todo.bnav.dev/api/auth/oauth2/callback/bnav-oidc"],
           disabled: false,
           skipConsent: true,
           metadata: { internal: true },
