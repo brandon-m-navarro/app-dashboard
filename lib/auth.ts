@@ -30,6 +30,16 @@ export const auth = betterAuth({
           disabled: false,
           skipConsent: true,
           metadata: { internal: true },
+        },
+        {
+          clientId: process.env.DASH_CLIENT_ID as string,
+          clientSecret: process.env.DASH_CLIENT_SECRET as string,
+          name: "Dashboard App",
+          type: "web",
+          redirectUrls: ["https://dash.bnav.dev/api/auth/oauth2/callback/bnav-oidc"],
+          disabled: false,
+          skipConsent: true,
+          metadata: { internal: true },
         }
       ],
     }),
