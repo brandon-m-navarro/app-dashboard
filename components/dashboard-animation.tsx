@@ -1,7 +1,7 @@
 // Need to make some isometric animation here for the dashboard
 export default function DashboardAnimation() {
   return (
-    <div className="animation-container flex mt-[24px] mb-[12px] mx-auto h-[250px] w-[250px] relative">
+    <div className="animation-container flex mt-[24px] mb-[12px] mx-auto h-[250px] min-w-[200px] relative sm:block hidden place-content-center">
       <div className="m-auto w-full max-w-sm rounded-md border border-[#FFF]/5 p-4">
         <div className="flex group-hover:animate-pulse space-x-4">
           <div className="size-10 rounded-full bg-gray-200"></div>

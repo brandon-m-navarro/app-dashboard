@@ -2,7 +2,7 @@ import ThreeDCheck from "./3d-check";
 
 export default function TodoAnimation() {
   return (
-    <div className="animation-container mt-[12px] mb-[24px] mx-auto h-[250px] w-[250px] relative">
+    <div className="animation-container mt-[12px] mb-[24px] mx-auto h-[250px] w-[250px] relative sm:block hidden">
 
       {/* Rotating 3D Checkmark */}
       <ThreeDCheck />

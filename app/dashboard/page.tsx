@@ -59,7 +59,7 @@ export default function DashboardPage() {
     <main className="min-h-screen bg-gradient-to-br from-[#091a23] to-[purple-700] flex items-center justify-center p-6">
       <div className="w-full max-w-4xl bg-[#091a23] rounded-2xl shadow-2xl p-10">
         {/* Header */}
-        <div className="flex items-center justify-between mb-10">
+        <div className="flex items-center justify-between mb-10 md:flex-nowrap flex-wrap gap-2">
           <div>
             <h1 className="text-[20px] font-bold text-white">
               Welcome, {user?.name || "User"}
@@ -129,7 +129,7 @@ export default function DashboardPage() {
             <TodoAnimation />
 
             <button
-              className="w-full rounded-lg bg-purple-600 py-2 text-white font-semibold cursor-pointer hover:bg-purple-700 transition"
+              className="w-full rounded-lg bg-purple-600 py-2 text-white font-semibold cursor-pointer hover:bg-purple-700 transition sm:m-0 mt-[24px]"
               onClick={() => {
                 window.location.href = "/api/redirect/todo";
               }}
