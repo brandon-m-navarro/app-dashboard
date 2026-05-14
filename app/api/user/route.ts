@@ -1,6 +1,6 @@
 // app/api/user/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 
 // Helper to get the logged-in user from session
