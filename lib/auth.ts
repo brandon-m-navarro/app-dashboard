@@ -42,6 +42,16 @@ export const auth = betterAuth({
           disabled: false,
           skipConsent: true,
           metadata: { internal: true },
+        },
+        {
+          clientId: process.env.GROCERY_CLIENT_ID as string,
+          clientSecret: process.env.GROCERY_CLIENT_SECRET as string,
+          name: "Fresh App",
+          type: "web",
+          redirectUrls: ["https://fresh.bnav.dev/api/auth/oauth2/callback/bnav-oidc"],
+          disabled: false,
+          skipConsent: true,
+          metadata: { internal: true },
         }
       ],
     }),
