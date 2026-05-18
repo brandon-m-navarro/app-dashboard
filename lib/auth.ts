@@ -24,6 +24,16 @@ export const auth = betterAuth({
       loginPage: "https://login.bnav.dev/login",
       trustedClients: [
         {
+          clientId: process.env.DEV_CLIENT_ID as string,
+          clientSecret: process.env.DEV_CLIENT_SECRET as string,
+          name: "dev",
+          type: "web",
+          redirectUrls: ["https://localhost:3000/api/auth/oauth2/callback/bnav-oidc"],
+          disabled: false,
+          skipConsent: true,
+          metadata: { internal: true },
+        },
+        {
           clientId: process.env.TODO_CLIENT_ID as string,
           clientSecret: process.env.TODO_CLIENT_SECRET as string,
           name: "Todo App",
