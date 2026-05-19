@@ -28,7 +28,7 @@ export const auth = betterAuth({
           clientSecret: process.env.DEV_CLIENT_SECRET as string,
           name: "dev",
           type: "web",
-          redirectUrls: ["https://localhost:3000/api/auth/oauth2/callback/bnav-oidc"],
+          redirectUrls: ["localhost:3000/api/auth/oauth2/callback/bnav-oidc"],
           disabled: false,
           skipConsent: true,
           metadata: { internal: true },
