@@ -10,6 +10,8 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [githubLoading, setGithubLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +43,7 @@ export default function LoginPage() {
           onSuccess: (ctx) => {
             console.log(ctx);
           },
-        }
+        },
       );
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -70,36 +72,105 @@ export default function LoginPage() {
 
         {/* OAuth Buttons */}
         <div className="flex flex-col gap-3 mb-6">
-          <button
-            className="flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-2 font-medium text-gray-800 hover:bg-gray-100 transition"
-            onClick={async () => {
-              await authClient.signIn.social({
-                provider: "google",
-                callbackURL: "/dashboard",
-                disableRedirect: false,
-              });
-            }}
-          >
-            <FaGoogle className="h-5 w-5" />
-            Continue with Google
-          </button>
-          <button
-            className="flex items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2 font-medium text-white hover:bg-gray-900 transition"
-            onClick={async () => {
-              try {
-                await authClient.signIn.social({
-                  provider: "github",
-                  callbackURL: "/dashboard",
-                  disableRedirect: false,
-                });
-              } catch (err) {
-                console.error(err);
-              }
-            }}
-          >
-            <FaGithub className="h-5 w-5" />
-            Continue with GitHub
-          </button>
+          {googleLoading ? (
+            <button
+              type="button"
+              className="flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-2 font-medium text-gray-800 hover:bg-gray-100 transition"
+              disabled
+            >
+              <svg
+                className="mr-3 size-5 animate-spin"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+              Loading..
+            </button>
+          ) : (
+            <button
+              className="flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-2 font-medium text-gray-800 hover:bg-gray-100 transition"
+              onClick={async () => {
+                try {
+                  setGoogleLoading(true);
+                  await authClient.signIn.social({
+                    provider: "google",
+                    callbackURL: "/dashboard",
+                    disableRedirect: false,
+                  });
+                } catch (err) {
+                  console.error(err);
+                  setGoogleLoading(false);
+                }
+              }}
+            >
+              <FaGoogle className="h-5 w-5" />
+              Continue with Google
+            </button>
+          )}
+
+          {githubLoading ? (
+            <button
+              type="button"
+              className="flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-2 font-medium text-gray-800 hover:bg-gray-100 transition"
+              disabled
+            >
+              <svg
+                className="mr-3 size-5 animate-spin"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+              Loading..
+            </button>
+          ) : (
+            <button
+              className="flex items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2 font-medium text-white hover:bg-gray-900 transition"
+              onClick={async () => {
+                try {
+                  setGithubLoading(true);
+                  await authClient.signIn.social({
+                    provider: "github",
+                    callbackURL: "/dashboard",
+                    disableRedirect: false,
+                  });
+                } catch (err) {
+                  console.error(err);
+                  setGithubLoading(false);
+                }
+              }}
+            >
+              <FaGithub className="h-5 w-5" />
+              Continue with GitHub
+            </button>
+          )}
         </div>
 
         <div className="flex items-center my-4">
