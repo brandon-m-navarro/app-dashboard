@@ -115,10 +115,14 @@ export default function SignupPage() {
                     fetchOptions: {
                       onSuccess: (ctx) => {
                         console.log(ctx);
-                        setGoogleLoading(false);
+                        setTimeout(() => {
+                          setGoogleLoading(false);
+                        }, 1000);
                       },
                       onError: (ctx) => {
-                        setGoogleLoading(false);
+                        setTimeout(() => {
+                          setGoogleLoading(false);
+                        }, 1000);
                         alert(ctx.error.message);
                       },
                     },
@@ -174,10 +178,14 @@ export default function SignupPage() {
                     fetchOptions: {
                       onSuccess: (ctx) => {
                         console.log(ctx);
-                        setGithubLoading(false);
+                        setTimeout(() => {
+                          setGithubLoading(false);
+                        }, 1000);
                       },
                       onError: (ctx) => {
-                        setGithubLoading(false);
+                        setTimeout(() => {
+                          setGithubLoading(false);
+                        }, 1000);
                         alert(ctx.error.message);
                       },
                     },

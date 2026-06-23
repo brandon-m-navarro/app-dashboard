@@ -113,7 +113,9 @@ export default function LoginPage() {
                     fetchOptions: {
                       onSuccess: (ctx) => {
                         console.log(ctx);
-                        setGoogleLoading(false);
+                        setTimeout(() => {
+                          setGoogleLoading(false);
+                        }, 1000);
                       },
                       onError: (ctx) => {
                         setGoogleLoading(false);
@@ -123,7 +125,9 @@ export default function LoginPage() {
                   });
                 } catch (err) {
                   console.error(err);
-                  setGoogleLoading(false);
+                  setTimeout(() => {
+                    setGoogleLoading(false);
+                  }, 1000);
                 }
               }}
             >
@@ -172,11 +176,15 @@ export default function LoginPage() {
                     disableRedirect: false,
                     fetchOptions: {
                       onSuccess: (ctx) => {
+                        setTimeout(() => {
+                          setGithubLoading(false);
+                        }, 1000);
                         console.log(ctx);
-                        setGithubLoading(false);
                       },
                       onError: (ctx) => {
-                        setGithubLoading(false);
+                        setTimeout(() => {
+                          setGithubLoading(false);
+                        }, 1000);
                         alert(ctx.error.message);
                       },
                     },
