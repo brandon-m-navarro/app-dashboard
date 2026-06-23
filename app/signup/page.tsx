@@ -104,7 +104,7 @@ export default function SignupPage() {
             </button>
           ) : (
             <button
-              className="flex items-center justify-center gap-2 rounded-lg bg-white px-4 py-2 font-medium text-gray-800 hover:bg-gray-100 transition"
+              className="flex items-center cursor-pointer justify-center gap-2 rounded-lg bg-white px-4 py-2 font-medium text-gray-800 hover:bg-gray-100 transition"
               onClick={async () => {
                 try {
                   setGoogleLoading(true);
@@ -153,7 +153,7 @@ export default function SignupPage() {
             </button>
           ) : (
             <button
-              className="flex items-center justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2 font-medium text-white hover:bg-gray-900 transition"
+              className="flex items-center cursor-pointer justify-center gap-2 rounded-lg bg-gray-800 px-4 py-2 font-medium text-white hover:bg-gray-900 transition"
               onClick={async () => {
                 try {
                   setGithubLoading(true);
