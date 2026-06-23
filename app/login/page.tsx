@@ -110,6 +110,16 @@ export default function LoginPage() {
                     provider: "google",
                     callbackURL: "/dashboard",
                     disableRedirect: false,
+                    fetchOptions: {
+                      onSuccess: (ctx) => {
+                        console.log(ctx);
+                        setGoogleLoading(false);
+                      },
+                      onError: (ctx) => {
+                        setGoogleLoading(false);
+                        alert(ctx.error.message);
+                      },
+                    },
                   });
                 } catch (err) {
                   console.error(err);
@@ -160,6 +170,16 @@ export default function LoginPage() {
                     provider: "github",
                     callbackURL: "/dashboard",
                     disableRedirect: false,
+                    fetchOptions: {
+                      onSuccess: (ctx) => {
+                        console.log(ctx);
+                        setGithubLoading(false);
+                      },
+                      onError: (ctx) => {
+                        setGithubLoading(false);
+                        alert(ctx.error.message);
+                      },
+                    },
                   });
                 } catch (err) {
                   console.error(err);
