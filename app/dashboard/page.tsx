@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-import { FaProjectDiagram, FaTasks } from "react-icons/fa";
+import { FaProjectDiagram, FaTasks, FaShoppingCart } from "react-icons/fa";
 import TodoAnimation from "@/components/todo-animation";
 import DashboardAnimation from "@/components/dashboard-animation";
 
@@ -132,6 +132,36 @@ export default function DashboardPage() {
               className="w-full rounded-lg bg-purple-600 py-2 text-white font-semibold cursor-pointer hover:bg-purple-700 transition sm:m-0 mt-[24px]"
               onClick={() => {
                 window.location.href = "/api/redirect/todo";
+              }}
+            >
+              Open App
+            </button>
+          </div>
+
+
+          {/* Widget 3: Fresh */}
+          <div className="group bg-[#0d212c] border-[#163341] border-[1px] hover:border-[#5c707a] rounded-xl shadow-md p-6 hover:shadow-xl hover:-translate-y-1 transition cursor-pointer">
+            <div className="flex items-center gap-4 mb-4 h-[64px]">
+              <div className="bg-amber-600 text-white p-3 rounded-full">
+                <FaShoppingCart className="h-6 w-6" />
+              </div>
+              <h2 className="text-2xl font-semibold text-white">Fresh App</h2>
+            </div>
+
+            <p className="text-[#8a99a0] mb-6">
+              A NextJS app to help users scan their grocery receipts to help track what's in their pantry, upcoming expiration dates, changes in prices, help construct grocery lists, and recommend possible recipes at meal times.
+              <strong className="text-white font-[400]">
+                {" "}
+                Utilizes Azure Document Intelligence for OCR and Vercel AI SDK to leverage LLMs to create pantry items from grocery receipt shorthand.
+              </strong>
+            </p>
+
+            
+
+            <button
+              className="w-full rounded-lg bg-amber-600 py-2 text-white font-semibold cursor-pointer hover:bg-amber-700 transition sm:m-0 mt-[24px]"
+              onClick={() => {
+                window.location.href = "/api/redirect/fresh";
               }}
             >
               Open App

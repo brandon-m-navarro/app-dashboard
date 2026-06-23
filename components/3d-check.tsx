@@ -11,7 +11,7 @@ export default function ThreeDCheck({ className = "" }: Props) {
       className={`relative perspective-distant w-[50px] h-[10px] translate-x-[100px] translate-y-[56px] z-11 ${className}`}
     >
       <div className="rotate-y-[30deg] preserve-3d">
-        <div className="w-[50px] h-[10px] relative preserve-3d group-hover:animate-rotate">
+        <div className="w-[50px] h-[10px] relative preserve-3d animate-rotate "> {/*group-hover:animate-rotate*/}
           {/* Create 3d prism */}
           <div className="w-[50px] h-[16px] relative r-rect preserve-3d">
             <div className="absolute border-[#000] border-1 r-rect-front w-[50px] h-[16px] bg-[#55A603] z-10"></div>
