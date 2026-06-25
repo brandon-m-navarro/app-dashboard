@@ -63,7 +63,7 @@ export default function LoginPage() {
           App Dashboard
         </h1>
         <p className="text-center text-white-600 mb-8">
-          Sign in to access all your apps securely.
+          Sign in to access all my apps securely
         </p>
 
         {error && (

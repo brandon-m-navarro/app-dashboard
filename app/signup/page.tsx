@@ -65,7 +65,7 @@ export default function SignupPage() {
           Create Account
         </h1>
         <p className="text-center text-white-600 mb-8">
-          Sign up to access your dashboard securely.
+          Sign up to share an account between all my apps!
         </p>
 
         {error && (
